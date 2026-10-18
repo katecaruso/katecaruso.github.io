@@ -25,7 +25,7 @@ compliments[10]="You deserve the GELLER CUP!"
 /*Below lists the questions, its choices, and finally, the solution to each question. Folow the exact format below when editing the questions. You may have as many questions as needed. Check doc at http://javascriptkit.com/script/script2/comboquiz.htm for more info
 */
 
-question[1]="What is the name of the coffee shop where the characters from Friends hang out?"
+question[1]=" What is the name of the coffee shop where the characters from Friends hang out?"
 choice1[1]="Coffee House"
 choice1[2]="Central Perk"
 choice1[3]="Java Joe's"
