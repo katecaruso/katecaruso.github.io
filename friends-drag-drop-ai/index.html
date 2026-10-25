@@ -1,274 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>The One Where Everybody Gets Sorted</title>
 <style>
-  :root { --purple:#53306d; --gold:#b78320; --ink:#29202c; --coffee:#563a2f; }
-  * { box-sizing:border-box; }
-  body { margin:0; padding:28px 18px; font-family:Arial, Helvetica, sans-serif; color:var(--ink); background:repeating-linear-gradient(45deg,#f7eedc,#f7eedc 22px,#f3e8d3 22px,#f3e8d3 44px); }
-  main { max-width:1100px; margin:auto; background:#fffaf1; padding:clamp(18px,4vw,38px); border:3px solid var(--purple); border-radius:18px; box-shadow:0 12px 35px #442a1d29; }
-  header { text-align:center; border-bottom:3px solid var(--gold); padding-bottom:16px; margin-bottom:22px; }
-  .eyebrow { text-transform:uppercase; letter-spacing:.2em; font-size:.8rem; font-weight:700; color:var(--coffee); }
-  h1 { font-family:'Trebuchet MS','Comic Sans MS',cursive; color:var(--purple); font-size:clamp(1.9rem,5vw,3.1rem); line-height:1.15; margin:12px 0; }
-  .instructions { line-height:1.6; font-size:1.06rem; margin:8px 0; }
-  .toolbar { display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between; margin-bottom:10px; }
-  .layout { display:grid; grid-template-columns:minmax(220px,1fr) 2fr; gap:20px; align-items:start; }
-  .panel { background:#fff; border:1px solid #cbbda7; border-radius:12px; padding:18px; box-shadow:0 3px 12px #513a2912; }
-  h2 { color:var(--coffee); margin:0 0 15px; font-size:1.3rem; }
-  .cards { display:flex; flex-wrap:wrap; gap:9px; min-height:65px; }
-  .card { background:#fff0ba; color:#282018; border:2px solid #8c641d; padding:11px 12px; border-radius:8px; cursor:grab; touch-action:none; user-select:none; font-size:.96rem; line-height:1.4; font-weight:600; box-shadow:0 2px 3px #00000012; }
-  .card:focus-visible,.card.selected { outline:3px solid var(--purple); outline-offset:2px; }
-  .card.correct { background:#c6ebcd; color:#153e22; border-color:#216438; }
-  .card.incorrect { background:#f7c6c6; color:#681b1b; border-color:#9e2929; }
-  .card.dragging { opacity:.3; }
-  .drag-ghost { position:fixed; z-index:1000; pointer-events:none; opacity:.93; margin:0; box-shadow:0 6px 18px #0004; max-width:240px; }
-  .source-over { outline:3px dashed var(--purple); outline-offset:4px; }
-  .targets { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-  .target { min-height:155px; border:2px dashed #816b88; border-radius:10px; padding:12px; background:#f5effb; }
-  .target[data-category="monica"] { background:#f9e9ec; }
-  .target[data-category="rachel"] { background:#fff2db; }
-  .target[data-category="phoebe"] { background:#e9f3e5; }
-  .target[data-category="chandler"] { background:#e7eef8; }
-  .target[data-category="ross"] { background:#f0e8f8; }
-  .target[data-category="joey"] { background:#fbeee3; }
-  .target.over { outline:3px solid var(--purple); outline-offset:2px; }
-  .target h3 { color:#392640; margin:0 0 12px; font-size:1.1rem; }
-  .target .cards { align-content:start; }
-  .count { font-size:.8rem; color:#514755; font-weight:normal; }
-  button { padding:11px 18px; border:2px solid #44245b; border-radius:8px; background:var(--purple); color:white; font-size:1rem; font-weight:700; cursor:pointer; }
-  button:hover { background:#3b2051; }
-  button:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
-  #score { font-size:1.1rem; font-weight:700; color:var(--purple); }
-  #status { min-height:26px; line-height:1.5; font-weight:600; }
-  footer { text-align:center; margin-top:30px; padding-top:16px; border-top:2px solid var(--gold); color:#4d3b32; font-size:.9rem; }
-  @media(max-width:720px) { body { padding:10px; } .layout { grid-template-columns:1fr; } .targets { grid-template-columns:1fr; } .panel { padding:13px; } }
+:root{color-scheme:light;--ink:#241a36;--purple:#49306e;--lavender:#eee5f7;--gold:#f4c95d;--focus:#143f8c;--border:#786493;font-family:Trebuchet MS,Arial,sans-serif;color:var(--ink);background:#f8f5fc}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;line-height:1.5;background:linear-gradient(180deg,#eee4f7 0,#faf7fd 370px,#fffaf1 100%)}
+main{max-width:1180px;margin:auto;padding:28px 20px 36px}.masthead{background:#49306e;color:#fff;text-align:center;border:5px solid #f4c95d;border-radius:22px;padding:28px 18px 22px;box-shadow:0 8px 0 #d7c3e8;margin-bottom:24px}.eyebrow{font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:#ffdf83;font-size:.82rem;margin:0 0 10px}.dots{display:flex;justify-content:center;gap:10px;margin-bottom:12px}.dots span{width:12px;height:12px;border-radius:50%;background:#e3b3a8}.dots span:nth-child(2){background:#f4c95d}.dots span:nth-child(3){background:#b5c9ef}.dots span:nth-child(4){background:#a4d8c1}.dots span:nth-child(5){background:#e3b3a8}.dots span:nth-child(6){background:#f4c95d}
+h1{font-family:Georgia,Times New Roman,serif;font-weight:800;letter-spacing:-.035em;font-size:clamp(2rem,4.4vw,3.65rem);line-height:1.14;margin:0 0 13px;text-wrap:balance}.instructions{font-size:clamp(1rem,2vw,1.17rem);margin:0;color:#fff}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 17px}.score{background:#fff;border:2px solid #49306e;padding:10px 17px;border-radius:100px;font-weight:800}button{font:inherit;font-weight:800;cursor:pointer;border-radius:10px;border:2px solid #49306e;background:#f4c95d;color:#241a36;padding:10px 17px;min-height:44px}button:hover{background:#ffe2a0}button:focus-visible,.clue:focus-visible,.zone:focus-visible,.bank:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+h2{font-family:Georgia,Times New Roman,serif}.bank-section{background:#fff;border:2px solid #a08bbd;border-radius:17px;padding:15px 17px 17px;margin-bottom:22px;box-shadow:0 3px 0 #e1d4ef}.bank-section h2{margin:0 0 10px;color:#392456;font-size:1.4rem}.bank,.zone{border:2px dashed #8c76ab;border-radius:12px;background:#fff;padding:12px;min-height:96px}.bank{display:flex;flex-wrap:wrap;gap:10px}.bank:empty:after{content:'All clues have been placed.';color:#51445f}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.category{border:2px solid var(--character);background:var(--tint);border-radius:17px;padding:13px;min-width:0;box-shadow:0 4px 0 #e1d8e8}.category h2{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:1.34rem;margin:0 0 11px;color:var(--character);font-weight:800}.count{font-family:Trebuchet MS,Arial,sans-serif;font-size:.84rem;font-weight:800;color:var(--ink);background:#fff;border:1px solid #9386a0;border-radius:30px;padding:3px 8px;white-space:nowrap}.zone{display:flex;flex-direction:column;gap:9px;min-height:190px}.zone.over,.bank.over{border-color:#143f8c;background:#e9f0ff;box-shadow:inset 0 0 0 2px #143f8c}.zone.full{border-style:solid}
+.category[data-character=Monica]{--character:#5a327e;--tint:#efe4f7}.category[data-character=Rachel]{--character:#8b345c;--tint:#fae9f0}.category[data-character=Phoebe]{--character:#176452;--tint:#e5f4ee}.category[data-character=Chandler]{--character:#805019;--tint:#fcf0d9}.category[data-character=Ross]{--character:#28578b;--tint:#e6eff9}.category[data-character=Joey]{--character:#704382;--tint:#f2e8f7}
+.clue{border:2px solid #806a9e;border-radius:10px;padding:11px 13px;min-height:44px;background:#f4eefb;color:#2b1c42;cursor:grab;user-select:none;touch-action:none;overflow-wrap:anywhere;line-height:1.4;font-weight:700;box-shadow:0 2px 0 #d4c6e2}.clue:hover{border-color:#49306e;background:#ebe0f7}.clue.correct{background:#dcf4e4;border-color:#216d3d;color:#15492b}.clue.incorrect{background:#ffe2e2;border-color:#a32632;color:#7b1721}.clue.correct:before{content:'✓ Correct · ';font-weight:800}.clue.incorrect:before{content:'✕ Try again · ';font-weight:800}.clue.dragging{opacity:.35}.drag-ghost{position:fixed;z-index:1000;pointer-events:none;box-shadow:0 10px 28px #0003;max-width:260px;transform:translate(-50%,-50%);touch-action:none}.clue.selected{outline:4px solid var(--focus);outline-offset:2px}.message{min-height:3em;padding:12px 15px;border:2px solid #6b5091;border-radius:11px;background:#eee5f7;margin:18px 0;font-weight:700}.message.warn{background:#fff0d5;border-color:#9a6415;color:#6d4107}.success{background:#dcf4e4;color:#15492b;border:2px solid #216d3d;border-radius:12px;padding:19px;text-align:center;font-size:1.2rem;font-weight:800;margin:16px 0}.hint{font-size:.96rem;color:#3e3350;margin:16px 0 20px}.footer{text-align:center;border-top:3px solid #d3b36b;margin-top:25px;padding:19px 0 0;font-size:.93rem;font-weight:700;color:#392456}#status{font-weight:800}#announce{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}[hidden]{display:none!important}
+@media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:15px 12px 25px}.masthead{padding:23px 14px}}@media(max-width:490px){.grid{grid-template-columns:1fr}.category{padding:12px}.zone{min-height:115px}.toolbar{align-items:stretch}.toolbar>*{flex:1;text-align:center}.bank{gap:8px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media(forced-colors:active){.category,.clue,.zone,.bank,button{forced-color-adjust:auto;border-style:solid}.clue.correct:before,.clue.incorrect:before{forced-color-adjust:auto}}
 </style>
 </head>
-<body>
-<main>
-<header><div class="eyebrow">The Coffeehouse Sorting Challenge</div><h1>The One Where Everybody Gets Sorted</h1>
-<p class="instructions">Drag each clue into the box for the Friends character it describes.</p></header>
-<div class="toolbar"><button id="reset" type="button">Reset quiz</button>
-<p id="score" aria-live="polite"><strong>0 of 18 correct</strong></p></div>
-<p id="status" role="status" aria-live="polite"></p>
-<div class="layout">
-  <section class="panel" aria-label="Unsorted clues">
-    <h2>Clue Cards</h2>
-    <div id="source" class="cards"></div>
-  </section>
-  <section class="panel" aria-label="Category boxes">
-    <h2>Categories</h2>
-    <div id="targets" class="targets"></div>
-  </section>
-</div>
-<footer>Kate Caruso · EME 6208 DIME · University of Florida</footer>
-</main>
-<script>
+<body><main>
+<header class="masthead"><p class="eyebrow">The Friends Sorting Challenge</p><div class="dots" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div><h1>The One Where Everybody Gets Sorted</h1><p class="instructions">Drag each clue into the box for the Friends character it describes.</p></header>
+<div class="toolbar"><strong id="status" class="score" aria-live="polite">0 of 18 correctly sorted</strong><button id="reset" type="button">Start over</button></div>
+<section class="bank-section" aria-label="Clue bank"><h2>Clues</h2><div class="bank" id="bank" data-target="bank" tabindex="0" aria-label="Unsorted clues"></div></section>
+<section aria-label="Character categories" class="grid" id="grid"></section>
+<p id="feedback" class="message" role="status" aria-live="polite">Choose a clue to begin.</p><div id="success" class="success" hidden>🎉 Congratulations! You sorted all 18 clues correctly!</div><p class="hint">Drag a clue with a mouse, finger, or stylus, or tap a clue and then tap a character box. Select a placed clue to move it elsewhere. Each box holds up to three clues.</p>
+<p id="announce" role="status" aria-live="polite"></p><footer class="footer">Kate Caruso, EME 6208 DIME – University of Florida</footer>
+</main><script>
 'use strict';
-const categories = [
-  {id: 'monica', label: 'Monica'},
-  {id: 'rachel', label: 'Rachel'},
-  {id: 'phoebe', label: 'Phoebe'},
-  {id: 'chandler', label: 'Chandler'},
-  {id: 'ross', label: 'Ross'},
-  {id: 'joey', label: 'Joey'}
+const categories=[
+{name:'Monica',clues:['Chef','Clean Freak','“I know!”']},
+{name:'Rachel',clues:['Fashion','Ralph Lauren','“It’s a metaphor, Daddy!”']},
+{name:'Phoebe',clues:['Massage Therapist','Smelly Cat','“He’s her lobster!”']},
+{name:'Chandler',clues:['Transponster','Sarcasm','“Gum would be perfection!”']},
+{name:'Ross',clues:['Paleontologist','Unagi','“We were on a break!”']},
+{name:'Joey',clues:['Dr. Drake Ramoray','Sandwiches','“How you doin’?”']}
 ];
-const clueGroups = {
-  monica: ['Chef', 'Clean Freak', '“I know!”'],
-  rachel: ['Fashion', 'Ralph Lauren', '“It’s a metaphor, Daddy!”'],
-  phoebe: ['Smelly Cat', 'Massage therapist', '“He’s her lobster!”'],
-  chandler: ['Sarcasm', 'Transponster', '“Gum would be perfection.”'],
-  ross: ['Paleontologist', 'Unagi', '“We were on a break!”'],
-  joey: ['Dr. Drake Ramoray', 'Sandwiches', '“How you doin’?”']
-};
-const clues = categories.flatMap(category =>
-  clueGroups[category.id].map((clue, index) => ({
-    id: `${category.id}-${index + 1}`,
-    text: clue,
-    answer: category.id
-  }))
-);
-function shuffle(items) {
-  const result = [...items];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
-const source = document.getElementById('source');
-const targets = document.getElementById('targets');
-const status = document.getElementById('status');
-const score = document.getElementById('score');
-let selected = null;
-let pointerDrag = null;
-let suppressClickUntil = 0;
-
-function setStatus(message) { status.textContent = message; }
-function countIn(target) { return target.querySelectorAll('.card').length; }
-function clearSelection() {
-  if (selected) selected.classList.remove('selected');
-  selected = null;
-}
-function selectCard(card) {
-  clearSelection();
-  selected = card;
-  card.classList.add('selected');
-  setStatus(`${card.textContent} selected. Tap a category or the clue area.`);
-}
-function updateCounts() {
-  document.querySelectorAll('.target').forEach(target => {
-    target.querySelector('.count').textContent = `(${countIn(target)}/3)`;
-  });
-  const correct = document.querySelectorAll('.target .card.correct').length;
-  score.textContent = `${correct} of ${clues.length} correct`;
-  if (correct === clues.length) {
-    setStatus('Congratulations! All 18 clues are sorted correctly!');
-  }
-}
-function moveCard(card, destination) {
-  if (!card || !destination) return;
-  const area = destination.classList.contains('target')
-    ? destination.querySelector('.cards') : source;
-  if (card.parentElement === area) {
-    clearSelection();
-    return;
-  }
-  if (destination.classList.contains('target') && countIn(destination) >= 3) {
-    setStatus('That box is full. Each character can hold only 3 cards.');
-    return;
-  }
-  area.appendChild(card);
-  const inBox = destination.classList.contains('target');
-  const correct = inBox && card.dataset.answer === destination.dataset.category;
-  card.classList.toggle('correct', correct);
-  card.classList.toggle('incorrect', inBox && !correct);
-  clearSelection();
-  setStatus(!inBox ? 'Card returned to the clue area.' :
-    correct ? 'Correct placement!' : 'Not quite. Move the card to try another box.');
-  updateCounts();
-}
-function findDestination(x, y) {
-  const element = document.elementFromPoint(x, y);
-  if (!element) return null;
-  return element.closest('.target') || (element.closest('#source') ? source : null);
-}
-function clearHighlights() {
-  document.querySelectorAll('.target.over').forEach(t => t.classList.remove('over'));
-  source.classList.remove('source-over');
-}
-function createCard(clue) {
-  const card = document.createElement('div');
-  card.className = 'card';
-  card.textContent = clue.text;
-  card.dataset.answer = clue.answer;
-  card.id = clue.id;
-  card.tabIndex = 0;
-  card.setAttribute('role', 'button');
-  card.setAttribute('aria-label', `${clue.text}. Select to place or move.`);
-  // Pointer Events support mouse, touch and pen using the same drag behavior.
-  card.addEventListener('pointerdown', event => {
-    if (event.button !== 0 || pointerDrag) return;
-    const rect = card.getBoundingClientRect();
-    pointerDrag = {
-      card, id: event.pointerId, x: event.clientX, y: event.clientY,
-      dx: event.clientX - rect.left, dy: event.clientY - rect.top,
-      active: false, ghost: null
-    };
-    card.setPointerCapture(event.pointerId);
-  });
-  card.addEventListener('pointermove', event => {
-    const drag = pointerDrag;
-    if (!drag || drag.card !== card || drag.id !== event.pointerId) return;
-    if (!drag.active && Math.hypot(event.clientX - drag.x, event.clientY - drag.y) < 7) return;
-    if (!drag.active) {
-      drag.active = true;
-      drag.ghost = card.cloneNode(true);
-      drag.ghost.removeAttribute('id');
-      drag.ghost.classList.add('drag-ghost');
-      drag.ghost.style.width = `${card.getBoundingClientRect().width}px`;
-      document.body.appendChild(drag.ghost);
-      card.classList.add('dragging');
-    }
-    drag.ghost.style.left = `${event.clientX - drag.dx}px`;
-    drag.ghost.style.top = `${event.clientY - drag.dy}px`;
-    clearHighlights();
-    const destination = findDestination(event.clientX, event.clientY);
-    if (destination === source) source.classList.add('source-over');
-    else if (destination) destination.classList.add('over');
-  });
-  function finishPointer(event, canceled = false) {
-    const drag = pointerDrag;
-    if (!drag || drag.card !== card || drag.id !== event.pointerId) return;
-    pointerDrag = null;
-    if (drag.active) {
-      const destination = !canceled && findDestination(event.clientX, event.clientY);
-      drag.ghost.remove();
-      card.classList.remove('dragging');
-      clearHighlights();
-      suppressClickUntil = Date.now() + 400;
-      if (destination) moveCard(card, destination);
-      else setStatus('Drop the card inside a category or the clue area.');
-    }
-  }
-  card.addEventListener('pointerup', event => finishPointer(event));
-  card.addEventListener('pointercancel', event => finishPointer(event, true));
-  card.addEventListener('click', event => {
-    event.stopPropagation();
-    if (Date.now() < suppressClickUntil) return;
-    selectCard(card);
-  });
-  card.addEventListener('keydown', event => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      selectCard(card);
-    }
-  });
-  return card;
-}
-function build() {
-  if (pointerDrag?.ghost) pointerDrag.ghost.remove();
-  pointerDrag = null;
-  clearSelection();
-  source.replaceChildren();
-  targets.replaceChildren();
-  shuffle(clues).forEach(clue => source.appendChild(createCard(clue)));
-  categories.forEach(category => {
-    const target = document.createElement('div');
-    target.className = 'target';
-    target.dataset.category = category.id;
-    target.tabIndex = 0;
-    target.setAttribute('role', 'button');
-    target.setAttribute('aria-label', `Place selected card in ${category.label}`);
-    const heading = document.createElement('h3');
-    heading.textContent = category.label + ' ';
-    const count = document.createElement('span');
-    count.className = 'count';
-    heading.appendChild(count);
-    const area = document.createElement('div');
-    area.className = 'cards';
-    target.append(heading, area);
-    target.addEventListener('click', () => {
-      if (Date.now() >= suppressClickUntil && selected) moveCard(selected, target);
-    });
-    target.addEventListener('keydown', event => {
-      if ((event.key === 'Enter' || event.key === ' ') && selected) {
-        event.preventDefault();
-        moveCard(selected, target);
-      }
-    });
-    targets.appendChild(target);
-  });
-  updateCounts();
-  setStatus('Ready to sort. Drag a clue or tap a clue and then its category.');
-}
-source.addEventListener('click', () => {
-  if (Date.now() >= suppressClickUntil && selected) moveCard(selected, source);
+const bank=document.querySelector('#bank'),grid=document.querySelector('#grid'),status=document.querySelector('#status'),announce=document.querySelector('#announce'),feedback=document.querySelector('#feedback'),success=document.querySelector('#success');let selected=null;let pointerDrag=null;let suppressClickUntil=0;
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function build(){grid.replaceChildren();categories.forEach(cat=>{const section=document.createElement('section');section.className='category';section.dataset.character=cat.name;const h=document.createElement('h2');h.textContent=cat.name+' ';const count=document.createElement('span');count.className='count';count.textContent='0 / 3';h.append(count);const zone=document.createElement('div');zone.className='zone';zone.dataset.target=cat.name;zone.tabIndex=0;zone.setAttribute('role','group');zone.setAttribute('aria-label',cat.name+' drop box, maximum three clues');section.append(h,zone);grid.append(section)});}
+function move(clue,target){if(!clue||!target)return;const origin=clue.parentElement;if(target!==bank&&target.children.length>=3&&origin!==target){tell('That box is full (3 of 3). Move a clue out before adding another.',true);return}target.append(clue);selected=null;document.querySelectorAll('.clue.selected').forEach(c=>c.classList.remove('selected'));update();tell(target===bank?'Clue returned to the bank.':clue.textContent+(clue.dataset.answer===target.dataset.target?' is correct in ':' is incorrect in ')+target.dataset.target+'.')}
+function update(){let correct=0;document.querySelectorAll('.clue').forEach(c=>{const dest=c.parentElement.dataset.target;c.classList.toggle('correct',dest!=='bank'&&dest===c.dataset.answer);c.classList.toggle('incorrect',dest!=='bank'&&dest!==c.dataset.answer);if(dest!=='bank'&&dest===c.dataset.answer)correct++});document.querySelectorAll('.category').forEach(s=>{const n=s.querySelector('.zone').children.length;s.querySelector('.count').textContent=n+' / 3';s.querySelector('.zone').classList.toggle('full',n===3)});status.textContent=correct+' / 18 correct';success.hidden=correct!==18;if(correct===18)tell('Congratulations! Every clue is in the correct box!')}
+function tell(message,warning=false){feedback.textContent=message;feedback.classList.toggle('warn',warning);announce.textContent=message}
+function reset(){if(pointerDrag?.ghost)pointerDrag.ghost.remove();pointerDrag=null;selected=null;bank.replaceChildren();const all=shuffle(categories.flatMap(c=>c.clues.map((label,i)=>({label,answer:c.name,id:c.name+'-'+i}))));all.forEach(item=>{const el=document.createElement('div');el.className='clue';el.textContent=item.label;el.dataset.answer=item.answer;el.id=item.id;el.draggable=false;el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label',item.label+', select to move');bank.append(el)});document.querySelectorAll('.zone').forEach(z=>z.replaceChildren());update();tell('Quiz reset. Choose a clue to begin.')}
+build();reset();
+document.addEventListener('dragstart',e=>{const c=e.target.closest('.clue');if(!c)return;selected=c;c.classList.add('selected');e.dataTransfer.setData('text/plain',c.id);e.dataTransfer.effectAllowed='move'});
+document.addEventListener('dragend',()=>document.querySelectorAll('.over').forEach(e=>e.classList.remove('over')));
+document.addEventListener('dragover',e=>{const t=e.target.closest('[data-target]');if(!t)return;e.preventDefault();e.dataTransfer.dropEffect='move';t.classList.add('over')});
+document.addEventListener('dragleave',e=>{const t=e.target.closest('[data-target]');if(t&&!t.contains(e.relatedTarget))t.classList.remove('over')});
+document.addEventListener('drop',e=>{const t=e.target.closest('[data-target]');if(!t)return;e.preventDefault();document.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));move(document.getElementById(e.dataTransfer.getData('text/plain'))||selected,t)});
+document.addEventListener('click',e=>{if(Date.now()<suppressClickUntil)return;const c=e.target.closest('.clue');if(c){if(selected===c){c.classList.remove('selected');selected=null}else{document.querySelectorAll('.clue.selected').forEach(x=>x.classList.remove('selected'));selected=c;c.classList.add('selected');tell(c.textContent+' selected. Choose a character box or the clue bank.')}return}const t=e.target.closest('[data-target]');if(t&&selected)move(selected,t)});
+document.addEventListener('keydown',e=>{if(e.key!=='Enter'&&e.key!==' ')return;const el=e.target;if(el.matches('.clue,[data-target]')){e.preventDefault();el.click()}});
+// Pointer Events handle finger, stylus, and mouse dragging consistently.
+// The same pointer behavior works with mouse, touch, and stylus; native drag is disabled to prevent duplicate events.
+document.addEventListener('pointerdown',e=>{
+ const card=e.target.closest('.clue');if(!card||e.button!==0)return;
+ if(pointerDrag)return;pointerDrag={card,id:e.pointerId,startX:e.clientX,startY:e.clientY,active:false,ghost:null};
 });
-document.getElementById('reset').addEventListener('click', build);
-build();
-</script>
-</body>
-</html>
+document.addEventListener('pointermove',e=>{
+ const d=pointerDrag;if(!d||e.pointerId!==d.id)return;
+ if(!d.active&&Math.hypot(e.clientX-d.startX,e.clientY-d.startY)>9){
+  d.active=true;selected=d.card;d.card.classList.add('dragging');
+  d.ghost=d.card.cloneNode(true);d.ghost.removeAttribute('id');d.ghost.classList.add('drag-ghost');d.ghost.classList.remove('dragging');document.body.append(d.ghost);
+ }
+ if(!d.active)return;
+ if(e.cancelable)e.preventDefault();
+ d.ghost.style.left=e.clientX+'px';d.ghost.style.top=e.clientY+'px';
+ document.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));
+ const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-target]');if(target)target.classList.add('over');
+},{passive:false});
+function endPointer(e,cancel=false){
+ const d=pointerDrag;if(!d||e.pointerId!==d.id)return;pointerDrag=null;
+ if(!d.active)return;
+ suppressClickUntil=Date.now()+450;
+ d.ghost?.remove();d.card.classList.remove('dragging');
+ document.querySelectorAll('.over').forEach(x=>x.classList.remove('over'));
+ if(cancel)return;
+ const target=document.elementFromPoint(e.clientX,e.clientY)?.closest('[data-target]');
+ if(target)move(d.card,target);else tell('Drop the clue into a character box or the clue bank.');
+}
+document.addEventListener('pointerup',e=>endPointer(e));
+document.addEventListener('pointercancel',e=>endPointer(e,true));
+document.querySelector('#reset').addEventListener('click',reset);
+</script></body></html>
