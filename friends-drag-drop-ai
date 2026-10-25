@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends Drag &amp; Drop</title>
+  <style>
+    /* ===== THEME (replace with your styling) ===== */
+    :root {
+      --bg: #f4f5f7;
+      --text: #222;
+      --panel: #ffffff;
+      --border: #c9ccd3;
+      --card-bg: #ffffff;
+      --card-border: #8a8f99;
+      --correct-bg: #d6f5dc;
+      --correct-border: #2e9e4a;
+      --wrong-bg: #fbd9d9;
+      --wrong-border: #d23b3b;
+      --accent: #3b6fd2;
+      --radius: 10px;
+      --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header { text-align: center; margin-bottom: 16px; }
+    header h1 { margin: 0 0 6px; }
+    header p { margin: 0; }
+
+    .toolbar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 12px 0 20px;
+    }
+
+    .toolbar button {
+      font: inherit;
+      padding: 8px 18px;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      cursor: pointer;
+    }
+
+    #score { font-weight: 600; }
+
+    /* ===== CLUE BANK ===== */
+    #bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      min-height: 80px;
+      padding: 14px;
+      margin-bottom: 24px;
+      background: var(--panel);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    /* ===== CATEGORY BOXES ===== */
+    #categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) { #categories { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { #categories { grid-template-columns: 1fr; } }
+
+    .category {
+      background: var(--panel);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .category h2 {
+      margin: 0 0 4px;
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .category .count {
+      text-align: center;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .category .slots {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 150px;
+    }
+
+    .drop-zone.hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(59,111,210,0.25); }
+    .category.full-shake { animation: shake 0.35s; border-color: var(--wrong-border); }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-6px); }
+      75% { transform: translateX(6px); }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      padding: 10px 14px;
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: var(--radius);
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .card.dragging {
+      position: fixed;
+      z-index: 1000;
+      cursor: grabbing;
+      pointer-events: none;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      transition: none;
+    }
+
+    .card.correct { background: var(--correct-bg); border-color: var(--correct-border); }
+    .card.wrong   { background: var(--wrong-bg);   border-color: var(--wrong-border); }
+
+    #message {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 20px;
+      min-height: 1.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="quiz-title">Drag &amp; Drop Sorting Quiz</h1>
+    <p id="quiz-instructions">Drag each clue into the correct category. Each box holds up to 3 cards.</p>
+  </header>
+
+  <div class="toolbar">
+    <span id="score">Correct: 0 / 0</span>
+    <button id="reset-btn" type="button">Reset</button>
+  </div>
+
+  <div id="bank" class="drop-zone" data-zone="bank" aria-label="Clue bank"></div>
+
+  <div id="categories"></div>
+
+  <div id="message" aria-live="polite"></div>
+
+  <script>
+    /* =========================================================
+       CONTENT — replace these with your own categories & clues.
+       Each category needs a unique id. Each clue's "category"
+       must match one of those ids. 6 categories x 3 clues = 18.
+       ========================================================= */
+    const QUIZ = {
+      title: "Drag & Drop Sorting Quiz",
+      instructions: "Drag each clue into the correct category. Each box holds up to 3 cards.",
+      maxPerBox: 3,
+      categories: [
+        { id: "c1", name: "Category 1" },
+        { id: "c2", name: "Category 2" },
+        { id: "c3", name: "Category 3" },
+        { id: "c4", name: "Category 4" },
+        { id: "c5", name: "Category 5" },
+        { id: "c6", name: "Category 6" }
+      ],
+      clues: [
+        { text: "Clue 1A", category: "c1" }, { text: "Clue 1B", category: "c1" }, { text: "Clue 1C", category: "c1" },
+        { text: "Clue 2A", category: "c2" }, { text: "Clue 2B", category: "c2" }, { text: "Clue 2C", category: "c2" },
+        { text: "Clue 3A", category: "c3" }, { text: "Clue 3B", category: "c3" }, { text: "Clue 3C", category: "c3" },
+        { text: "Clue 4A", category: "c4" }, { text: "Clue 4B", category: "c4" }, { text: "Clue 4C", category: "c4" },
+        { text: "Clue 5A", category: "c5" }, { text: "Clue 5B", category: "c5" }, { text: "Clue 5C", category: "c5" },
+        { text: "Clue 6A", category: "c6" }, { text: "Clue 6B", category: "c6" }, { text: "Clue 6C", category: "c6" }
+      ]
+    };
+
+    /* ===================== QUIZ LOGIC ===================== */
+    const bank = document.getElementById("bank");
+    const catContainer = document.getElementById("categories");
+    const scoreEl = document.getElementById("score");
+    const messageEl = document.getElementById("message");
+
+    document.getElementById("quiz-title").textContent = QUIZ.title;
+    document.getElementById("quiz-instructions").textContent = QUIZ.instructions;
+    document.title = QUIZ.title;
+
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function buildCategories() {
+      catContainer.innerHTML = "";
+      QUIZ.categories.forEach(cat => {
+        const box = document.createElement("div");
+        box.className = "category drop-zone";
+        box.dataset.zone = "category";
+        box.dataset.category = cat.id;
+        box.innerHTML =
+          `<h2></h2><div class="count"></div><div class="slots"></div>`;
+        box.querySelector("h2").textContent = cat.name;
+        catContainer.appendChild(box);
+      });
+    }
+
+    function buildCards() {
+      bank.innerHTML = "";
+      shuffle(QUIZ.clues).forEach(clue => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.textContent = clue.text;
+        card.dataset.category = clue.category;
+        card.addEventListener("pointerdown", startDrag);
+        bank.appendChild(card);
+      });
+    }
+
+    function slotsOf(zone) {
+      return zone.dataset.zone === "category" ? zone.querySelector(".slots") : zone;
+    }
+
+    function updateStatus() {
+      document.querySelectorAll(".category").forEach(box => {
+        const n = box.querySelectorAll(".card").length;
+        box.querySelector(".count").textContent = `${n} / ${QUIZ.maxPerBox}`;
+      });
+      const correct = document.querySelectorAll(".category .card.correct").length;
+      const total = QUIZ.clues.length;
+      scoreEl.textContent = `Correct: ${correct} / ${total}`;
+      messageEl.textContent = correct === total ? "🎉 All clues sorted correctly!" : "";
+    }
+
+    /* ----- Pointer-based dragging (works with mouse, touch, and pen) ----- */
+    let drag = null;
+
+    function startDrag(e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      const card = e.currentTarget;
+      const rect = card.getBoundingClientRect();
+      drag = {
+        card,
+        origin: card.parentElement,
+        nextSibling: card.nextSibling,
+        offsetX: e.clientX - rect.left,
+        offsetY: e.clientY - rect.top,
+        placeholder: document.createElement("div"),
+        hoverZone: null
+      };
+      // keep layout steady while the card is lifted
+      drag.placeholder.style.height = rect.height + "px";
+      drag.placeholder.style.width = rect.width + "px";
+      card.parentElement.insertBefore(drag.placeholder, card);
+
+      card.style.width = rect.width + "px";
+      card.classList.add("dragging");
+      moveCard(e.clientX, e.clientY);
+
+      card.setPointerCapture(e.pointerId);
+      card.addEventListener("pointermove", onDrag);
+      card.addEventListener("pointerup", endDrag);
+      card.addEventListener("pointercancel", endDrag);
+      e.preventDefault();
+    }
+
+    function moveCard(x, y) {
+      drag.card.style.left = (x - drag.offsetX) + "px";
+      drag.card.style.top = (y - drag.offsetY) + "px";
+    }
+
+    function zoneAt(x, y) {
+      const el = document.elementFromPoint(x, y);
+      return el ? el.closest(".drop-zone") : null;
+    }
+
+    function onDrag(e) {
+      if (!drag) return;
+      moveCard(e.clientX, e.clientY);
+      const zone = zoneAt(e.clientX, e.clientY);
+      if (zone !== drag.hoverZone) {
+        if (drag.hoverZone) drag.hoverZone.classList.remove("hover");
+        if (zone) zone.classList.add("hover");
+        drag.hoverZone = zone;
+      }
+    }
+
+    function endDrag(e) {
+      if (!drag) return;
+      const { card, placeholder } = drag;
+      card.removeEventListener("pointermove", onDrag);
+      card.removeEventListener("pointerup", endDrag);
+      card.removeEventListener("pointercancel", endDrag);
+      if (drag.hoverZone) drag.hoverZone.classList.remove("hover");
+
+      const zone = e.type === "pointerup" ? zoneAt(e.clientX, e.clientY) : null;
+
+      card.classList.remove("dragging");
+      card.style.left = card.style.top = card.style.width = "";
+
+      if (zone && canDrop(zone, card)) {
+        placeholder.remove();
+        placeCard(card, zone);
+      } else {
+        // return to where it came from
+        placeholder.replaceWith(card);
+        if (zone && zone.dataset.zone === "category") flashFull(zone);
+      }
+      drag = null;
+      updateStatus();
+    }
+
+    function canDrop(zone, card) {
+      if (zone.dataset.zone !== "category") return true;
+      const others = [...zone.querySelectorAll(".card")].filter(c => c !== card);
+      return others.length < QUIZ.maxPerBox;
+    }
+
+    function placeCard(card, zone) {
+      slotsOf(zone).appendChild(card);
+      card.classList.remove("correct", "wrong");
+      if (zone.dataset.zone === "category") {
+        card.classList.add(card.dataset.category === zone.dataset.category ? "correct" : "wrong");
+      }
+    }
+
+    function flashFull(box) {
+      box.classList.remove("full-shake");
+      void box.offsetWidth; // restart animation
+      box.classList.add("full-shake");
+      setTimeout(() => box.classList.remove("full-shake"), 400);
+    }
+
+    function init() {
+      buildCategories();
+      buildCards();
+      updateStatus();
+    }
+
+    document.getElementById("reset-btn").addEventListener("click", init);
+    init();
+  </script>
+</body>
+</html>
