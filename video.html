@@ -1,76 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
-Name       : Vestibule 
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20130406
--->
-
-<!-- Comments are in ALL CAPS -->
-
-
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<!-- Vestibule template by TEMPLATED (https://templated.co), released under the Creative Commons Attribution License. -->
+<html lang="en">
 <head>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-
-<!-- SET THE PAGE TITLE INSIDE THE TITLE TAGS BELOW -->
-<title>Video Production | Kate Caruso ePortfolio</title>
-
-<link href="http://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" type="text/css" />
-<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+    <meta charset="utf-8">
+    <title>Video Production | Kate Caruso ePortfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" media="screen">
 </head>
-
 <body>
 <div id="wrapper">
-<!-- START OF THE NAVIGATION SECTION.  DO NOT CHANGE ANYTHING ABOVE THIS LINE EXCEPT TO SET THE TITLE. -->
-
-
-	<div id="menu-wrapper">
-		<div id="menu" class="container">
-			<ul>
-				<!-- NAVIGATION MENU.  THERE SHOULD BE ONE LIST ITEM FOR EACH BUTTON IN YOUR NAVIGATION BAR. -->
-                <!-- REPLACE THE # IN THE LINK WITH THE FILE NAME OF THE APPROPRIATE PAGE.  -->
+    <div id="menu-wrapper">
+        <div id="menu" class="container">
+            <ul>
                 <li><a href="index.html">About</a></li>
-				<li><a href="image.html">Image Editing</a></li>
-				<li><a href="web.html">Web Design</a></li>
-				<li class="current_page_item"><a href="video.html">Video Production</a></li>
-				<li><a href="animation.html">Animation</a></li>
-				<li><a href="screencast.html">Screencast</a></li>
-				<li><a href="contact.html">Contact Me</a></li>
-			</ul>
-		</div>
-	</div>
-	<div id="logo" class="container">
-		<!-- THIS IS WHERE YOU CUSTOMIZE THE HEADER FOR EACH PAGE. -->
+                <li><a href="image.html">Image Editing</a></li>
+                <li><a href="web.html">Web Design</a></li>
+                <li class="current_page_item"><a href="video.html" aria-current="page">Video Production</a></li>
+                <li><a href="animation.html">Animation</a></li>
+                <li><a href="screencast.html">Screencast</a></li>
+                <li><a href="contact.html">Contact Me</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="logo" class="container">
         <h1>Kate Caruso ePortfolio</h1>
-		<!-- THIS IS WHERE YOU CUSTOMIZE THE SUBHEADER FOR EACH PAGE. -->
         <p>Video Production</p>
-	</div>
-	<div id="page" class="container">
-		<div class="entry">
-			<h2>Video Production</h2>
-			<p>I created an educational video using traditional editing tools, bringing together visuals, narration, and transitions. I also created an AI-assisted version to compare how each approach shaped the way I presented the material. Watching the two versions side by side shows how choices about visuals, pacing, and narration can change how an explanation comes across.</p>
-			<ul>
-				<li><a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video</a></li>
-				<li><a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video</a></li>
-			</ul>
-		</div>
-	</div>
-<!-- END OF THE CONTENT SECTION.  BELOW YOU CAN CUSTOMIZE YOUR FOOTER. -->
+    </div>
+    <div id="page" class="container">
+        <div class="entry">
+            <h2>Video Production</h2>
+            <p>I created an educational video using traditional editing tools, bringing together visuals, narration, and transitions. I also created an AI-assisted version to compare how each approach shaped the way I presented the material. Watching the two versions side by side shows how choices about visuals, pacing, and narration can change how an explanation comes across.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.5rem;">
+                <section style="min-width: 0;">
+                    <h3>Traditional Editing</h3>
+                    <iframe src="https://www.youtube.com/embed/IUUD2zqemuE"
+                        title="Educational video using traditional editing"
+                        width="720" height="405" loading="lazy"
+                        style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0;"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p><a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video on YouTube</a></p>
+                </section>
+                <section style="min-width: 0;">
+                    <h3>AI-Assisted Production</h3>
+                    <iframe src="https://www.youtube.com/embed/XCssJnGCSkc"
+                        title="Educational video using ai-assisted production"
+                        width="720" height="405" loading="lazy"
+                        style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0;"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p><a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video on YouTube</a></p>
+                </section>
+            </div>
+        </div>
+    </div>
 </div>
-
 <div id="footer">
-	<!-- START FOOTER -->
-	<p>© 2026 Kate Caruso | EME 6208 DIME | University of Florida | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
-    <!-- END FOOTER -->
+    <p>© 2026 Kate Caruso | EME 6208 DIME | University of Florida | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
-
 </body>
 </html>
