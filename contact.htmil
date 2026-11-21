@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Me | Kate Caruso ePortfolio</title>
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
+    <link href="style.css" rel="stylesheet" media="screen">
+    <style>
+        .contact-page #wrapper,
+        .contact-page .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .contact-page #logo {
+            padding-block: 2rem 1rem;
+        }
+
+        .contact-page #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+        }
+
+        .contact-details {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid;
+            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+        }
+
+        .contact-details h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .contact-details a {
+            overflow-wrap: anywhere;
+        }
+
+        @media (max-width: 75rem) {
+            .contact-page #menu {
+                height: auto;
+            }
+
+            .contact-page #menu ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body class="contact-page">
+<div id="wrapper">
+    <div id="menu-wrapper">
+        <nav id="menu" class="container" aria-label="Portfolio">
+            <ul>
+                <li><a href="index.html">About</a></li>
+                <li><a href="image.html">Image Editing</a></li>
+                <li><a href="web.html">Web Design</a></li>
+                <li><a href="video.html">Video Production</a></li>
+                <li><a href="animation.html">Animation</a></li>
+                <li><a href="screencast.html">Screencast</a></li>
+                <li class="current_page_item"><a href="contact.html" aria-current="page">Contact Me</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="logo" class="container">
+        <h1>Contact Me</h1>
+    </div>
+
+    <main id="page" class="container">
+        <div class="entry">
+            <p>Thank you for visiting my ePortfolio. If you have a question about one of my projects or would like to share feedback, I’d be happy to hear from you.</p>
+        </div>
+
+        <section class="contact-details" aria-labelledby="email-heading">
+            <h2 id="email-heading">Email</h2>
+            <p><a href="mailto:katharinecaruso@ufl.edu">KatharineCaruso@ufl.edu</a></p>
+        </section>
+    </main>
+</div>
+
+<div id="footer">
+    <p>© 2026 Kate Caruso | EME 6208 DIME |
+        <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> |
+        Template adapted from <a href="https://templated.co">TEMPLATED</a>
+    </p>
+</div>
+</body>
+</html>
