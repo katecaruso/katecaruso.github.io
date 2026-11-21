@@ -1,61 +1,157 @@
+Copy this into `image.html` in your GitHub Pages portfolio. It uses your existing `style.css` and the three image files in the same folder.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Image Editing | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" media="screen" />
+    <style>
+        .image-editing #wrapper,
+        .image-editing .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .image-editing #logo {
+            padding-block: 2rem 1rem;
+        }
+
+        .image-editing #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+        }
+
+        .image-intro {
+            max-width: 72ch;
+            margin-inline: auto;
+        }
+
+        .image-project {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid;
+            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+        }
+
+        .logo-layout,
+        .cover-layout {
+            display: grid;
+            gap: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .logo-layout {
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+            align-items: center;
+        }
+
+        .cover-layout {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .image-project h2,
+        .cover-layout h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .image-project img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .logo-layout img {
+            max-width: 450px;
+            margin-inline: auto;
+        }
+
+        .cover-layout img {
+            max-width: 400px;
+            margin: 0 0 1.25rem;
+        }
+
+        @media (max-width: 75rem) {
+            .image-editing #menu {
+                height: auto;
+            }
+
+            .image-editing #menu ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 42rem) {
+            .logo-layout,
+            .cover-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="image-editing">
 <div id="wrapper">
     <div id="menu-wrapper">
-        <div id="menu" class="container">
+        <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
                 <li><a href="index.html">About</a></li>
-                <li class="current_page_item"><a href="image.html">Image Editing</a></li>
+                <li class="current_page_item"><a href="image.html" aria-current="page">Image Editing</a></li>
                 <li><a href="web.html">Web Design</a></li>
                 <li><a href="video.html">Video Production</a></li>
                 <li><a href="animation.html">Animation</a></li>
                 <li><a href="screencast.html">Screencast</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
+        </nav>
+    </div>
+
+    <div id="logo" class="container">
+        <h1>Image Editing</h1>
+    </div>
+
+    <main id="page" class="container">
+        <div class="entry image-intro">
+            <p>I explored vector and raster image editing using Inkscape and GIMP. I created a vector logo for Uncommon Edit, a fictional publishing services company, and designed a book cover for Jane Austen's <i>Sense and Sensibility</i>. I also created an AI-generated version of the book cover to compare traditional image editing with an AI-assisted approach.</p>
         </div>
-    </div>
-<div id="logo" class="container">
-    <h1>Image Editing</h1>
+
+        <section class="image-project logo-layout" aria-labelledby="logo-heading">
+            <div>
+                <h2 id="logo-heading">Vector Logo: Uncommon Edit</h2>
+                <p>I used Inkscape to create a vector logo for Uncommon Edit, a fictional company offering editing, book design, and consulting services to self-published authors. I wanted the logo to have a traditional appearance, so I used three books in burgundy, navy, and gold, along with Georgia, a serif font. I created the design using vector shapes and text, then adjusted the arrangement, spacing, and colors before exporting the finished logo.</p>
+            </div>
+            <img src="uncommon_edit_logo.svg" alt="Uncommon Edit vector logo featuring three books" />
+        </section>
+
+        <section class="image-project" aria-labelledby="cover-heading">
+            <h2 id="cover-heading">Book Cover: <i>Sense and Sensibility</i></h2>
+            <div class="cover-layout">
+                <section aria-labelledby="traditional-heading">
+                    <h3 id="traditional-heading">GIMP Book Cover</h3>
+                    <img src="sense-and-sensibility-cover-final.png"
+                         alt="Sense and Sensibility book cover created in GIMP" />
+                    <p>I used GIMP to design a book cover for Jane Austen's <i>Sense and Sensibility</i>. I combined John Constable's landscape painting <i>The White Horse</i>, an antique handwritten manuscript, and an illustration of two women in period clothing. I used layers to arrange the images and removed the original background around the women so they would appear in the landscape.</p>
+                    <p>This was my first time using GIMP, and I spent considerable time refining the edges around the women so they wouldn't look like stickers placed over the painting. After finally getting the edges the way I wanted, I realized I'd accidentally rotated the image and had to figure out how to correct it. Although I struggled with some of the tools, I learned a lot about working with layers, selections, and image composition.</p>
+                </section>
+
+                <section aria-labelledby="ai-heading">
+                    <h3 id="ai-heading">AI-Generated Book Cover</h3>
+                    <img src="sense-and-sensibility-ai.jpg"
+                         alt="AI-generated Sense and Sensibility book cover" />
+                    <p>To explore an alternative approach, I used ChatGPT to create a book cover for Jane Austen's <i>Sense and Sensibility</i>. I provided instructions about the book's themes and asked AI to apply design principles such as visual hierarchy, scale, and color theory. The resulting image was created much more quickly than my traditional cover.</p>
+                    <p>Although AI made the process easier, I learned more by creating the images myself in Inkscape and GIMP. I also preferred my traditional book cover, even though the AI-generated version looked more polished. This experience also showed me why it's important to review AI-generated work rather than assume the design is good just because it looks polished.</p>
+                </section>
+            </div>
+        </section>
+    </main>
 </div>
-    <div id="page" class="container">
-    <div>
-        <div class="entry">
-           
-<p>I explored vector and raster image editing using Inkscape and GIMP. I created a vector logo for Uncommon Edit, a fictional publishing services company, and designed a book cover for Jane Austen's <i>Sense and Sensibility</i>. I also created an AI-generated version of the book cover to compare traditional image editing with an AI-assisted approach.</p>
-        </div>
-    </div>
-    </div>
-    <div id="page" class="container">
-    <h2>Vector Logo: Uncommon Edit</h2>
-    <p>I used Inkscape to create a vector logo for Uncommon Edit, a fictional company offering editing, book design, and consulting services to self-published authors. I wanted the logo to have a traditional appearance, so I used three books in burgundy, navy, and gold, along with Georgia, a serif font. I created the design using vector shapes and text, then adjusted the arrangement, spacing, and colors before exporting the finished logo.</p>
-    <img src="uncommon_edit_logo.svg" alt="Uncommon Edit vector logo featuring three books" style="max-width: 450px; width: 100%; height: auto;">
-    </div>
-    <div id="page" class="container">
-    <h2>Book Cover: Sense and Sensibility</h2>
-    <p>I used GIMP to design a book cover for Jane Austen's <i>Sense and Sensibility</i>. I combined John Constable's landscape painting <i>The White Horse</i>, an antique handwritten manuscript, and an illustration of two women in period clothing. I used layers to arrange the images and removed the original background around the women so they would appear in the landscape.</p>
-    <p>This was my first time using GIMP, and I spent considerable time refining the edges around the women so they wouldn't look like stickers placed over the painting. After finally getting the edges the way I wanted, I realized I'd accidentally rotated the image and had to figure out how to correct it. Although I struggled with some of the tools, I learned a lot about working with layers, selections, and image composition.</p>
-    <img src="sense-and-sensibility-cover-final.png"
-         alt="Sense and Sensibility book cover created in GIMP"
-         style="max-width: 400px; width: 100%; height: auto;">
-    </div>
-    <div id="page" class="container">
-    <h2>AI-Generated Book Cover</h2>
-    <p>To explore an alternative approach, I used ChatGPT to create a book cover for Jane Austen's <i>Sense and Sensibility</i>. I provided instructions about the book's themes and asked AI to apply design principles such as visual hierarchy, scale, and color theory. The resulting image was created much more quickly than my traditional cover.</p>
-    <p>Although AI made the process easier, I learned more by creating the images myself in Inkscape and GIMP. I also preferred my traditional book cover, even though the AI-generated version looked more polished. This experience also showed me why it's important to review AI-generated work rather than assume the design is good just because it looks polished.</p>
-    <img src="sense-and-sensibility-ai.jpg"
-         alt="AI-generated Sense and Sensibility book cover"
-         style="max-width: 400px; width: 100%; height: auto;">
-</div>
-</div>
+
 <div id="footer">
-  <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
 </body>
 </html>
+```
