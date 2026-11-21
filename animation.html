@@ -1,16 +1,72 @@
+Here’s the updated `animation.html`. It uses **Animation** as the page heading to match the navigation. Your project title and introduction sit above a thin divider, followed by a responsive video player and the YouTube link.
+
+```html
 <!DOCTYPE html>
 <!-- Vestibule template by TEMPLATED (https://templated.co), released under the Creative Commons Attribution License. -->
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PIVOT! The One Where They Should've Used Physics | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
     <link href="style.css" rel="stylesheet" media="screen">
+    <style>
+        .animation-page #wrapper,
+        .animation-page .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .animation-page #logo {
+            padding-block: 2rem 1rem;
+        }
+
+        .animation-page #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+        }
+
+        .animation-page h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .animation-video {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid;
+            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+        }
+
+        .animation-video iframe {
+            display: block;
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        .animation-video p {
+            margin: 0.75rem 0 0;
+        }
+
+        @media (max-width: 75rem) {
+            .animation-page #menu {
+                height: auto;
+            }
+
+            .animation-page #menu ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="animation-page">
 <div id="wrapper">
     <div id="menu-wrapper">
-        <div id="menu" class="container">
+        <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
                 <li><a href="index.html">About</a></li>
                 <li><a href="image.html">Image Editing</a></li>
@@ -20,27 +76,35 @@
                 <li><a href="screencast.html">Screencast</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
+
     <div id="logo" class="container">
-        <h1>Kate Caruso ePortfolio</h1>
-        <p>Digital Animation</p>
+        <h1>Animation</h1>
     </div>
-    <div id="page" class="container">
-        <div class="entry">
-            <h2>PIVOT! The One Where They Should've Used Physics</h2>
-            <p>I created a <i>Friends</i>-inspired animation to explain how pushing farther from a fixed pivot increases torque. I used AI to develop the visuals and narration, then reviewed the final cut for accuracy and clarity.</p>
-            <iframe src="https://www.youtube.com/embed/KSoaunfwmRQ"
-                title="PIVOT! The One Where They Should've Used Physics"
-                width="720" height="405"
-                style="display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0;"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p><a href="https://youtu.be/KSoaunfwmRQ" class="button">Watch on YouTube</a></p>
-        </div>
-    </div>
+
+    <main id="page" class="container">
+        <section aria-labelledby="animation-heading">
+            <div class="entry">
+                <h2 id="animation-heading">PIVOT! The One Where They Should've Used Physics</h2>
+                <p>I created a <i>Friends</i>-inspired animation to explain how pushing farther from a fixed pivot increases torque. I used AI to develop the visuals and narration, then reviewed the final cut for accuracy and clarity.</p>
+            </div>
+
+            <div class="animation-video">
+                <iframe src="https://www.youtube.com/embed/KSoaunfwmRQ"
+                        title="PIVOT! The One Where They Should've Used Physics"
+                        width="720" height="405"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                <p><a href="https://youtu.be/KSoaunfwmRQ">Watch on YouTube</a></p>
+            </div>
+        </section>
+    </main>
 </div>
+
 <div id="footer">
-   <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
 </body>
 </html>
+```
