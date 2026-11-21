@@ -22,6 +22,24 @@
             padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
         }
 
+        .contact-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 12rem);
+            align-items: center;
+            gap: clamp(1.25rem, 4vw, 3rem);
+        }
+
+        .contact-intro p {
+            margin: 0;
+        }
+
+        .contact-headshot {
+            display: block;
+            width: 100%;
+            max-width: 12rem;
+            height: auto;
+        }
+
         .contact-details {
             margin-top: 2rem;
             padding-top: 1.5rem;
@@ -29,12 +47,8 @@
             border-top-color: color-mix(in srgb, currentColor 22%, transparent);
         }
 
-        .contact-details h2 {
-            margin-bottom: 0.75rem;
-        }
-
-        .contact-details a {
-            overflow-wrap: anywhere;
+        .contact-details .button {
+            margin-top: 0;
         }
 
         @media (max-width: 75rem) {
@@ -46,6 +60,12 @@
                 display: flex;
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+        }
+
+        @media (max-width: 36rem) {
+            .contact-intro {
+                grid-template-columns: minmax(0, 1fr);
             }
         }
     </style>
@@ -71,14 +91,17 @@
     </div>
 
     <main id="page" class="container">
-        <div class="entry">
+        <div class="entry contact-intro">
             <p>Thank you for visiting my ePortfolio. If you have a question about one of my projects or would like to share feedback, I’d be happy to hear from you.</p>
+            <img class="contact-headshot"
+                 src="Warm%20Professional%20Business%20Headshot.png"
+                 alt="Portrait of Kate Caruso"
+                 width="1254" height="1254">
         </div>
 
-        <section class="contact-details" aria-labelledby="email-heading">
-            <h2 id="email-heading">Email</h2>
-            <p><a href="mailto:katharinecaruso@ufl.edu">KatharineCaruso@ufl.edu</a></p>
-        </section>
+        <div class="contact-details">
+            <a href="mailto:katharinecaruso@ufl.edu" class="button">Email Me</a>
+        </div>
     </main>
 </div>
 
