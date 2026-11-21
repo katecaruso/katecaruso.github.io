@@ -1,16 +1,78 @@
+Here’s the updated `video.html`. It uses **Video Production** as the page heading, keeps your introduction the full width of the divider, and places the two videos side by side when there’s room. On smaller screens, the videos stack, with each YouTube link directly below its player.
+
+```html
 <!DOCTYPE html>
 <!-- Vestibule template by TEMPLATED (https://templated.co), released under the Creative Commons Attribution License. -->
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Video Production | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
     <link href="style.css" rel="stylesheet" media="screen">
+    <style>
+        .video-production #wrapper,
+        .video-production .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .video-production #logo {
+            padding-block: 2rem 1rem;
+        }
+
+        .video-production #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+        }
+
+        .video-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid;
+            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+        }
+
+        .video-layout section {
+            min-width: 0;
+        }
+
+        .video-layout h2 {
+            margin-bottom: 0.75rem;
+        }
+
+        .video-layout iframe {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        .video-link {
+            margin: 0.75rem 0 0;
+        }
+
+        @media (max-width: 75rem) {
+            .video-production #menu {
+                height: auto;
+            }
+
+            .video-production #menu ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="video-production">
 <div id="wrapper">
     <div id="menu-wrapper">
-        <div id="menu" class="container">
+        <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
                 <li><a href="index.html">About</a></li>
                 <li><a href="image.html">Image Editing</a></li>
@@ -20,42 +82,46 @@
                 <li><a href="screencast.html">Screencast</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
+
     <div id="logo" class="container">
-        <h1>Kate Caruso ePortfolio</h1>
-        <p>Video Production</p>
+        <h1>Video Production</h1>
     </div>
-    <div id="page" class="container">
+
+    <main id="page" class="container">
         <div class="entry">
-            <h2>Video Production</h2>
             <p>I created two videos. One was created using traditional editing tools, and the other was AI-assisted, to compare how each approach shaped my presentation of the material.</p>
             <p>Watching the two versions side by side shows how choices about visuals, pacing, and narration can change how an explanation comes across.</p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 1.5rem;">
-                <section style="min-width: 0;">
-                    <h3>Traditional Editing</h3>
-                    <iframe src="https://www.youtube.com/embed/IUUD2zqemuE"
+        </div>
+
+        <div class="video-layout">
+            <section aria-labelledby="traditional-heading">
+                <h2 id="traditional-heading">Traditional Editing</h2>
+                <iframe src="https://www.youtube.com/embed/IUUD2zqemuE"
                         title="Educational video using traditional editing"
                         width="720" height="405" loading="lazy"
-                        style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0;"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p><a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video on YouTube</a></p>
-                </section>
-                <section style="min-width: 0;">
-                    <h3>AI-Assisted Production</h3>
-                    <iframe src="https://www.youtube.com/embed/XCssJnGCSkc"
-                        title="Educational video using ai-assisted production"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                <p class="video-link"><a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video on YouTube</a></p>
+            </section>
+
+            <section aria-labelledby="ai-heading">
+                <h2 id="ai-heading">AI-Assisted Production</h2>
+                <iframe src="https://www.youtube.com/embed/XCssJnGCSkc"
+                        title="Educational video using AI-assisted production"
                         width="720" height="405" loading="lazy"
-                        style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; border: 0;"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p><a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video on YouTube</a></p>
-                </section>
-            </div>
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen></iframe>
+                <p class="video-link"><a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video on YouTube</a></p>
+            </section>
         </div>
-    </div>
+    </main>
 </div>
+
 <div id="footer">
-   <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
 </body>
 </html>
+```
