@@ -2,14 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Screencasting | Kate Caruso’s ePortfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Screencast | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" media="screen" />
+    <style>
+        .screencast-page #wrapper,
+        .screencast-page .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .screencast-page #logo {
+            padding-block: 2rem 1rem;
+        }
+
+        .screencast-page #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+        }
+
+        .screencast-project {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid;
+            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+        }
+
+        .screencast-project h2,
+        .screencast-project h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .screencast-project iframe {
+            display: block;
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            border: 0;
+        }
+
+        .screencast-link {
+            margin: 0.75rem 0 0;
+        }
+
+        .screencast-reflection {
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 75rem) {
+            .screencast-page #menu {
+                height: auto;
+            }
+
+            .screencast-page #menu ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
-<body>
+<body class="screencast-page">
 <div id="wrapper">
     <div id="menu-wrapper">
-        <div id="menu" class="container">
+        <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
                 <li><a href="index.html">About</a></li>
                 <li><a href="image.html">Image Editing</a></li>
@@ -19,48 +77,55 @@
                 <li class="current_page_item"><a href="screencast.html" aria-current="page">Screencast</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
+
     <div id="logo" class="container">
-        <h1>Kate Caruso ePortfolio</h1>
-        <p>Screencasting</p>
+        <h1>Screencast</h1>
     </div>
-    <section class="container" aria-labelledby="github-tutorial-title" style="clear: both; padding: 2rem 0;">
+
+    <main id="page" class="container">
         <div class="entry">
-            <h2 id="github-tutorial-title">Publishing a Webpage with GitHub Pages</h2>
-            <p>In this tutorial, I demonstrate how to create a GitHub repository and publish a simple HTML website using GitHub Pages. I used Camtasia to create the screencast and narrated this tutorial myself.</p>
-            <iframe loading="lazy" src="https://www.youtube.com/embed/pfrvyCOSvxM"
-                title="Publishing a Webpage with GitHub Pages"
-                width="720" height="405" style="display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0;"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p><a href="https://youtu.be/pfrvyCOSvxM">Watch the GitHub Pages tutorial on YouTube</a></p>
+            <p>I created two screencasts. In the first, I show how to publish a website with GitHub Pages. In the second, I use Runway to explore how lighting and camera movement can change the mood of a scene.</p>
         </div>
-    </section>
 
-    <section id="screencast" class="container" aria-labelledby="screencast-title" style="clear: both; padding: 2rem 0;">
-        <div class="entry">
-            <h2 id="screencast-title">Same Coffee, Different Story</h2>
-            <p>Project 8 · Runway Gen-4.5 screencast</p>
+        <section class="screencast-project" aria-labelledby="github-tutorial-title">
+            <h2 id="github-tutorial-title">GitHub Pages Tutorial</h2>
+            <p>In this tutorial, I demonstrate how to create a GitHub repository and publish a simple HTML website using GitHub Pages. I used Camtasia to create the screencast and narrated this tutorial myself.</p>
+
+            <iframe src="https://www.youtube.com/embed/pfrvyCOSvxM"
+                    title="Publishing a Webpage with GitHub Pages"
+                    width="720" height="405" loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            <p class="screencast-link"><a href="https://youtu.be/pfrvyCOSvxM">Watch the GitHub Pages tutorial on YouTube</a></p>
+        </section>
+
+        <section id="screencast" class="screencast-project" aria-labelledby="screencast-title">
+            <h2 id="screencast-title">Runway Gen-4.5 Screencast</h2>
             <p>I compare two clips made from the same coffee-cup image to show how lighting and camera movement shape the mood of a scene.</p>
-            <iframe loading="lazy" src="https://www.youtube.com/embed/HiM4t4xhzRk"
-                title="Runway Gen-4.5 Screencast | Same Coffee, Different Story"
-                width="720" height="405" style="display: block; width: 100%; max-width: 720px; height: auto; aspect-ratio: 16 / 9; border: 0;"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p><a href="https://youtu.be/HiM4t4xhzRk">Watch the screencast on YouTube</a></p>
 
-            <h3>Reflection</h3>
-            <div style="max-width: 72ch;">
+            <iframe src="https://www.youtube.com/embed/HiM4t4xhzRk"
+                    title="Runway Gen-4.5 Screencast | Same Coffee, Different Story"
+                    width="720" height="405" loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            <p class="screencast-link"><a href="https://youtu.be/HiM4t4xhzRk">Watch <i>Same Coffee, Different Story</i> on YouTube</a></p>
+
+            <div class="screencast-reflection">
+                <h3>Reflection</h3>
                 <p>For this project, I shared how Runway, an AI video platform, can generate short clips from a written prompt or a starting image.</p>
                 <p>For my screencast, I used the same coffee cup image to create two five-second clips. I wanted one clip to feel like a cozy café ad and the other to feel like the opening of a thriller. In the café version, I asked for steam to rise from the cup as sunlight spread across the counter. In the thriller, a shadow passed behind the cup as the camera moved closer.</p>
                 <p>Those choices changed how a viewer might interpret the scene.</p>
                 <p>As an instructor, I would use this comparison with my learners to show how lighting, framing, and camera movement can influence what an audience expects to happen. I’d play both clips before revealing the prompts and ask learners to identify a specific moment that shaped their interpretation. Then I’d have them revise one line of a prompt to create a different mood and compare the result with the original. Learners could apply that same process when planning a presentation, an ad, or a training video.</p>
                 <p>Using Runway was an efficient and effective way to try two visual approaches without filming or setting up lighting. It also showed how much planning and forethought is involved. I asked for the camera to creep forward in the thriller clip, but it moved so close that part of the cup went out of frame. If I did this exercise again, I’d revise the prompt to specify that the whole cup should stay visible throughout the shot. Each new clip uses credits, so I’d decide what I want to test before generating a revision.</p>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 </div>
+
 <div id="footer">
-   <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
 </body>
 </html>
