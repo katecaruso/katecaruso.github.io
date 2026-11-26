@@ -7,6 +7,7 @@
     <title>Video Production | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
     <link href="style.css" rel="stylesheet" media="screen">
+
     <style>
         .video-production #wrapper,
         .video-production .container {
@@ -15,12 +16,18 @@
         }
 
         .video-production #logo {
-            padding-block: 2rem 1rem;
+            height: auto;
+            padding: 2rem 1rem 1rem;
+        }
+
+        .video-production #logo h1 {
+            font-size: clamp(36px, 6vw, 80px);
         }
 
         .video-production #page {
             width: min(100%, 66rem);
             padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+            font-size: 15px;
         }
 
         .video-layout {
@@ -29,8 +36,7 @@
             gap: clamp(1.5rem, 4vw, 3rem);
             margin-top: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid;
-            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+            border-top: 1px solid #D9A76C;
         }
 
         .video-layout section {
@@ -38,7 +44,8 @@
         }
 
         .video-layout h2 {
-            margin-bottom: 0.75rem;
+            font-size: 28px;
+            margin-bottom: 12px;
         }
 
         .video-layout iframe {
@@ -53,30 +60,44 @@
             margin: 0.75rem 0 0;
         }
 
-        @media (max-width: 75rem) {
-            .video-production #menu {
-                height: auto;
-            }
+        .video-production #menu-wrapper,
+        .video-production #menu {
+            height: auto;
+        }
 
-            .video-production #menu ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+        .video-production #menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .video-production #menu a {
+            padding: 0 20px;
+        }
+
+        .video-production #footer {
+            height: auto;
+            padding: 30px 15px;
         }
     </style>
 </head>
+
 <body class="video-production">
+
 <div id="wrapper">
+
     <div id="menu-wrapper">
         <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
                 <li><a href="index.html">About</a></li>
                 <li><a href="image.html">Image Editing</a></li>
                 <li><a href="web.html">Web Design</a></li>
-                <li class="current_page_item"><a href="video.html" aria-current="page">Video Production</a></li>
+                <li class="current_page_item">
+                    <a href="video.html" aria-current="page">Video Production</a>
+                </li>
                 <li><a href="animation.html">Animation</a></li>
                 <li><a href="screencast.html">Screencast</a></li>
+                <li><a href="mobile-app/">Mobile App</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
         </nav>
@@ -87,37 +108,59 @@
     </div>
 
     <main id="page" class="container">
+
         <div class="entry">
             <p>I created two videos. One was created using traditional editing tools, and the other was AI-assisted, to compare how each approach shaped my presentation of the material.</p>
+
             <p>Watching the two versions side by side shows how choices about visuals, pacing, and narration can change how an explanation comes across.</p>
         </div>
 
         <div class="video-layout">
+
             <section aria-labelledby="traditional-heading">
+
                 <h2 id="traditional-heading">Traditional Editing</h2>
+
                 <iframe src="https://www.youtube.com/embed/IUUD2zqemuE"
                         title="Educational video using traditional editing"
                         width="720" height="405" loading="lazy"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen></iframe>
-                <p class="video-link"><a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video on YouTube</a></p>
+
+                <p class="video-link">
+                    <a href="https://youtu.be/IUUD2zqemuE">Watch the traditionally created video on YouTube</a>
+                </p>
+
             </section>
 
             <section aria-labelledby="ai-heading">
+
                 <h2 id="ai-heading">AI-Assisted Production</h2>
+
                 <iframe src="https://www.youtube.com/embed/XCssJnGCSkc"
                         title="Educational video using AI-assisted production"
                         width="720" height="405" loading="lazy"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen></iframe>
-                <p class="video-link"><a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video on YouTube</a></p>
+
+                <p class="video-link">
+                    <a href="https://youtu.be/XCssJnGCSkc">Watch the AI-assisted video on YouTube</a>
+                </p>
+
             </section>
+
         </div>
+
     </main>
+
 </div>
 
 <div id="footer">
-    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME |
+        <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> |
+        Template adapted from <a href="https://templated.co">TEMPLATED</a>
+    </p>
 </div>
+
 </body>
 </html>
