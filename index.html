@@ -1,87 +1,183 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Kate Caruso's ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet" />
     <link href="style.css" rel="stylesheet" media="screen" />
+
+    <style>
+        .home-page .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .home-page #menu-wrapper,
+        .home-page #menu {
+            height: auto;
+        }
+
+        .home-page #menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .home-page #menu a {
+            padding: 0 20px;
+        }
+
+        .home-page #logo {
+            height: auto;
+            padding: 1rem;
+        }
+
+        .home-page #logo h1 {
+            font-size: clamp(36px, 6vw, 80px);
+        }
+
+        .home-page #logo p {
+            margin-top: 0;
+        }
+
+        .home-page .project-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            padding: 10px 20px 30px;
+        }
+
+        .home-page .box-style {
+            height: auto;
+            min-height: 260px;
+            display: flex;
+        }
+
+        .home-page .box-style .content {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .home-page .box-style .button {
+            margin-top: auto;
+        }
+
+        .home-page #footer {
+            height: auto;
+            padding: 30px 15px;
+        }
+
+        @media (max-width: 800px) {
+            .home-page .project-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
-<body>
+
+<body class="home-page">
+
 <div id="wrapper">
+
     <div id="menu-wrapper">
-        <div id="menu" class="container">
+        <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
-                <li class="current_page_item"><a href="index.html">About</a></li>
+                <li class="current_page_item">
+                    <a href="index.html" aria-current="page">About</a>
+                </li>
                 <li><a href="image.html">Image Editing</a></li>
                 <li><a href="web.html">Web Design</a></li>
                 <li><a href="video.html">Video Production</a></li>
                 <li><a href="animation.html">Animation</a></li>
                 <li><a href="screencast.html">Screencast</a></li>
+                <li><a href="mobile-app/">Mobile App</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
-        </div>
+        </nav>
     </div>
+
     <div id="logo" class="container">
         <h1>Kate Caruso ePortfolio</h1>
         <p>This is my EME 6208 design and development ePortfolio.</p>
     </div>
-    <div id="page" class="container">
-        <div>
+
+    <main>
+
+        <div id="page" class="container">
             <div class="entry">
-                <p>Welcome to my ePortfolio! I'm Kate Caruso, and my professional experience includes project management, website management, and instructional design. I enjoy finding practical and creative ways to use technology to make information easier to understand and learning more engaging. Through this course, Designing Integrated Media Environments, I'm building on that experience while exploring new tools and techniques in image editing, web design, video production, animation, and screencasting. This portfolio showcases my projects, what I've learned along the way, and how I can apply these skills to my work.</p>
+                <p>Welcome to my ePortfolio! I'm Kate Caruso, and my professional experience includes project management, website management, and instructional design. I enjoy finding practical and creative ways to use technology to make information easier to understand and learning more engaging. Through this course, Designing Integrated Media Environments, I'm building on that experience while exploring new tools and techniques in image editing, web design, video production, animation, screencasting, and mobile application development. This portfolio showcases my projects, what I've learned along the way, and how I can apply these skills to my work.</p>
             </div>
         </div>
-    </div>
-    <div id="three-column" class="container">
-        <div class="tbox1">
-            <div class="box-style"><div class="content">
-                <h2>Image Editing</h2>
-                <p>I used Inkscape to create a vector graphic for a fictional publishing company and GIMP to design a book cover for Jane Austen's, <i>Sense and Sensibility</i>, including an AI-generated alternative.</p>
-                <a href="image.html" class="button">Learn More</a>
-            </div></div>
+
+        <div class="project-row container">
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Image Editing</h2>
+                    <p>I used Inkscape to create a vector graphic for a fictional publishing company and GIMP to design a book cover for Jane Austen's, <i>Sense and Sensibility</i>, including an AI-generated alternative.</p>
+                    <a href="image.html" class="button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Web Design</h2>
+                    <p>I created a <i>Friends</i>-themed trivia quiz and drag-and-drop activity using HTML, CSS, and JavaScript. I also created an AI-assisted version to compare traditional coding with AI-assisted development.</p>
+                    <a href="web.html" class="button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Video Production</h2>
+                    <p>I combined visuals, narration, and transitions to create an educational video. I also made an AI-assisted version to compare how the two approaches shaped the finished video.</p>
+                    <a href="video.html" class="button">Learn More</a>
+                </div>
+            </div>
+
         </div>
-        <div class="tbox2">
-            <div class="box-style"><div class="content">
-                <h2>Web Design</h2>
-                <p>I created a <i>Friends</i>-themed trivia quiz and drag-and-drop activity using HTML, CSS, and JavaScript. I also created an AI-assisted version to compare traditional coding with AI-assisted development.</p>
-                <a href="web.html" class="button">Learn More</a>
-            </div></div>
+
+        <div class="project-row container">
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Digital Animation</h2>
+                    <p>I created a <i>Friends</i>-inspired animation to explain how pushing farther from a fixed pivot increases torque. I used AI to develop the visuals and narration.</p>
+                    <a href="animation.html" class="button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Screencasting</h2>
+                    <p>I created a Camtasia tutorial on publishing with GitHub Pages and a Runway guide showing how lighting and movement can change the mood of a scene.</p>
+                    <a href="screencast.html" class="button">Learn More</a>
+                </div>
+            </div>
+
+            <div class="box-style">
+                <div class="content">
+                    <h2>Mobile App Development</h2>
+                    <p>I transformed my original <i>Friends</i> trivia website into a mobile application using MIT App Inventor, incorporating visual programming, interactive questions, live scoring, and mobile usability testing.</p>
+                    <a href="mobile-app/" class="button">Learn More</a>
+                </div>
+            </div>
+
         </div>
-        <div class="tbox3">
-            <div class="box-style"><div class="content">
-                <h2>Video Production</h2>
-                <p>I combined visuals, narration, and transitions to create an educational video. I also made an AI-assisted version to compare how the two approaches shaped the finished video.</p>
-                <a href="video.html" class="button">Learn More</a>
-            </div></div>
-        </div>
-    </div>
-    <div id="three-column" class="container">
-        <div class="tbox1">
-            <div class="box-style"><div class="content">
-                <h2>Digital Animation</h2>
-                <p>I created a <i>Friends</i>-inspired animation to explain how pushing farther from a fixed pivot increases torque. I used AI to develop the visuals and narration.</p>
-                <a href="animation.html" class="button">Learn More</a>
-            </div></div>
-        </div>
-        <div class="tbox2">
-            <div class="box-style"><div class="content">
-                <h2>Screencasting</h2>
-                <p>I created a Camtasia tutorial on publishing with GitHub Pages and a Runway guide showing how lighting and movement can change the mood of a scene.</p>
-                <a href="screencast.html" class="button">Learn More</a>
-            </div></div>
-        </div>
-        <div class="tbox3">
-            <div class="box-style"><div class="content">
-                <h2>ePortfolio</h2>
-                <p>I'm creating this ePortfolio using HTML and CSS to showcase my digital media projects, demonstrate my web design skills, and document my learning.</p>
-                <a href="contact.html" class="button">Contact me</a>
-            </div></div>
-        </div>
-    </div>
+
+    </main>
 
 </div>
+
 <div id="footer">
-   <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
 </div>
+
 </body>
 </html>
