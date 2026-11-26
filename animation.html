@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- Vestibule template by TEMPLATED (https://templated.co), released under the Creative Commons Attribution License. -->
 <html lang="en">
@@ -102,6 +101,8 @@
 
         <div class="entry">
             <p><i>PIVOT! The One Where They Should’ve Used Physics</i> is a 14.8-second animation showing how the same perpendicular push produces twice the torque when applied twice as far from a fixed pivot.</p>
+
+            <p>This animation was inspired by the <i>Friends</i> episode when Ross buys a couch. Balking at the delivery cost, he and Rachel carry the couch to Ross's apartment building. With Chandler's help, they try to carry it up the stairs but struggle when they have to turn it. This animation uses that scene to show how pushing farther away from the pivot point might have made navigating that corner easier.</p>
         </div>
 
         <section class="animation-project" aria-labelledby="animation-heading">
@@ -120,6 +121,36 @@
             <p>
                 <a href="https://youtu.be/uYMLR7jfGhE">Watch on YouTube</a>
             </p>
+
+        </section>
+
+        <section class="animation-project" aria-labelledby="process-heading">
+
+            <h2 id="process-heading">Development Process</h2>
+
+            <p>Runway declined the request to render the opening because I didn't have enough credits available to complete the action. Instead, Codex rendered the vector animation at 1920 × 1080 and exported it as a silent clip.</p>
+
+            <p>The animation opens with an overhead illustration of a couch sliding into a stair landing, bumping, and getting stuck. A crossfade introduces two vector couch diagrams. The torque equation appears at exactly 2.5 seconds, and the couches rotate around their marked pivot points. The rotation uses keyframes four frames apart, with three intermediate frames calculated between each pair. Opacity tweening introduces the torque labels.</p>
+
+        </section>
+
+        <section class="animation-project" aria-labelledby="accuracy-heading">
+
+            <h2 id="accuracy-heading">Scientific Accuracy and Editing</h2>
+
+            <p>I confirmed the physics behind the animation using OpenStax, <i>University Physics Volume 1</i>, Section 10.6, “Torque.” Equal perpendicular pushes at distances of r and 2r produce one and two times the torque, respectively.</p>
+
+            <p>Both teal arrows have the same length and are perpendicular to the lever arms. Rotation illustrates direction and movement, while numeric labels compare magnitude. The scene focuses on the pivot but doesn't address friction and contact with the walls.</p>
+
+        </section>
+
+        <section class="animation-project" aria-labelledby="reflection-heading">
+
+            <h2 id="reflection-heading">What I Learned</h2>
+
+            <p>This project helped me understand how motion tweening, frame interpolation, transitions, and visual cues can work together to illustrate a scientific concept. It also demonstrated the importance of human review when using AI to develop instructional materials.</p>
+
+            <p>I reviewed the exported clip and flagged that the narration was difficult to hear, which led to a louder voiceover in a revised export. After publishing the animation on YouTube, I reviewed it again to confirm that the narration was clear, the equation and labels were readable, and the animation accurately demonstrated the intended physics concept. Even when AI handles much of the production, reviewing the finished product for accuracy, clarity, and usability remains an important part of the development process.</p>
 
         </section>
 
