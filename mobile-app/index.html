@@ -79,18 +79,19 @@
             margin: 0 auto 24px;
         }
 
-        .mobile-development .app-screenshots {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 24px;
-            max-width: 520px;
-            box-sizing: border-box;
-            background: #FFFFFF;
-            padding: 24px;
-            border-radius: 8px;
-            margin: 24px auto;
-            align-items: start;
-        }
+.mobile-development .app-screenshots img {
+    display: block;
+    width: auto;
+    max-width: min(100%, 200px);
+    height: auto;
+    max-height: 380px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 10px;
+    border: 1px solid #A49BC7;
+    box-sizing: border-box;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
 
         .mobile-development .app-screenshots figure {
             min-width: 0;
