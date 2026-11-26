@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!-- Vestibule template by TEMPLATED (https://templated.co), released under the Creative Commons Attribution License. -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobile App Development | Kate Caruso ePortfolio</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
+    <link href="../style.css" rel="stylesheet" media="screen">
+
+    <style>
+        .mobile-page #wrapper,
+        .mobile-page .container {
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .mobile-page #logo {
+            height: auto;
+            padding: 2rem 1rem 1rem;
+        }
+
+        .mobile-page #logo h1 {
+            font-size: clamp(36px, 6vw, 80px);
+        }
+
+        .mobile-page #page {
+            width: min(100%, 66rem);
+            padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+            font-size: 15px;
+        }
+
+        .app-showcase {
+            background: #FFFFFF;
+            border-top: 3px solid #D9A76C;
+            padding: clamp(1rem, 4vw, 2rem);
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .app-title {
+            color: #4B306A;
+            font-size: clamp(24px, 4vw, 36px);
+            font-weight: 700;
+        }
+
+        .app-dots {
+            font-size: 20px;
+            letter-spacing: 4px;
+            margin: 12px 0;
+        }
+
+        .app-subtitle {
+            font-style: italic;
+            color: #465563;
+        }
+
+        .app-screenshots {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 24px;
+            background: #E6E3F7;
+            padding: 24px 12px;
+            border-radius: 16px;
+            margin: 24px 0;
+        }
+
+        .app-screenshots figure {
+            flex: 1 1 220px;
+            max-width: 280px;
+            min-width: 0;
+            margin: 0;
+        }
+
+        .app-screenshots img {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .app-screenshots figcaption {
+            margin-top: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #4B306A;
+        }
+
+        .app-download {
+            display: inline-block;
+            background: #247F80;
+            color: #FFFFFF;
+            padding: 15px 28px;
+            margin: 12px 0;
+            font-weight: 700;
+            border-radius: 5px;
+        }
+
+        .app-download:hover {
+            background: #17324D;
+        }
+
+        .app-note {
+            font-size: 13px;
+            color: #465563;
+        }
+
+        .app-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #D9A76C;
+        }
+
+        .app-section h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .web-link {
+            color: #247F80;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .mobile-page #menu-wrapper,
+        .mobile-page #menu {
+            height: auto;
+        }
+
+        .mobile-page #menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .mobile-page #menu a {
+            padding: 0 20px;
+        }
+
+        .mobile-page #footer {
+            height: auto;
+            padding: 30px 15px;
+        }
+    </style>
+</head>
+
+<body class="mobile-page">
+
+<div id="wrapper">
+
+    <div id="menu-wrapper">
+        <nav id="menu" class="container" aria-label="Portfolio">
+            <ul>
+                <li><a href="../index.html">About</a></li>
+                <li><a href="../image.html">Image Editing</a></li>
+                <li><a href="../web.html">Web Design</a></li>
+                <li><a href="../video.html">Video Production</a></li>
+                <li><a href="../animation.html">Animation</a></li>
+                <li><a href="../screencast.html">Screencast</a></li>
+                <li class="current_page_item">
+                    <a href="index.html" aria-current="page">Mobile App</a>
+                </li>
+                <li><a href="../contact.html">Contact Me</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="logo" class="container">
+        <h1>Mobile App Development</h1>
+    </div>
+
+    <main id="page" class="container">
+
+        <div class="entry">
+            <p>
+                For this project, I transformed the Friends trivia
+                quiz I originally created for Module 2 into an
+                interactive mobile application using MIT App Inventor.
+                This project allowed me to explore mobile application
+                development, visual programming, interface design,
+                and usability testing.
+            </p>
+        </div>
+
+        <section class="app-showcase" aria-labelledby="app-heading">
+
+            <h2 id="app-heading" class="app-title">
+                The One with the Friends Trivia Quiz
+            </h2>
+
+            <div class="app-dots" aria-hidden="true">
+                🔴 🟡 🔵 🔴 🟡 🔵
+            </div>
+
+            <p class="app-subtitle">
+                How well do you know the gang?
+            </p>
+
+            <p>
+                Test your Friends knowledge with ten interactive
+                trivia questions, live scoring, humorous feedback,
+                final results, and replay functionality.
+            </p>
+
+            <div class="app-screenshots">
+
+                <figure>
+                    <img src="quiz-screen.png"
+                         alt="Friends trivia mobile app displaying the first question and four multiple-choice answers">
+                    <figcaption>Interactive Quiz Interface</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="results-screen.png"
+                         alt="Completed Friends trivia quiz displaying a final score of ten out of ten and a restart button">
+                    <figcaption>Final Results Screen</figcaption>
+                </figure>
+
+            </div>
+
+            <a class="app-download"
+               href="FriendsTriviaQuiz.apk" download>
+                Download Android App (.apk)
+            </a>
+
+            <p class="app-note">
+                Compatible with Android devices only.
+                Installation may require permission to install
+                applications from outside Google Play.
+            </p>
+
+            <p>
+                <a class="web-link" href="../friends-quiz/">
+                    Play the Original Web-Based Quiz
+                </a>
+            </p>
+
+        </section>
+
+        <section class="app-section">
+            <h2>Development Process</h2>
+
+            <p>
+                I used MIT App Inventor's Designer to create
+                the mobile interface and its Blocks editor
+                to program the application's functionality.
+                The quiz incorporates variables, lists,
+                procedures, conditional statements, and
+                button events to manage questions, answers,
+                scoring, and navigation.
+            </p>
+        </section>
+
+        <section class="app-section">
+            <h2>Testing and Usability</h2>
+
+            <p>
+                I tested the application on my iPhone using
+                MIT App Inventor Companion. During testing,
+                I refined the layout, adjusted button spacing,
+                improved margins, and repositioned the title
+                to create a more user-friendly experience.
+            </p>
+
+            <p>
+                I successfully tested the scoring system,
+                answer feedback, question navigation,
+                final results, and restart functionality.
+                I then generated an Android APK for distribution.
+            </p>
+        </section>
+
+        <section class="app-section">
+            <h2>Reflection and Future Development</h2>
+
+            <p>
+                This project helped me understand the relationship
+                between programming logic, interface design,
+                and the mobile user experience. In the future,
+                I would like to explore randomized feedback,
+                additional trivia questions, sound effects,
+                and more advanced mobile application development.
+            </p>
+        </section>
+
+        <p class="app-note">
+            This is an unofficial, fan-made educational project
+            and is not affiliated with the Friends television
+            series or its rights holders.
+        </p>
+
+    </main>
+</div>
+
+<div id="footer">
+    <p>
+        © 2026 Kate Caruso | EME 6208 DIME |
+        <a href="https://education.ufl.edu/educational-technology/">
+            UF Educational Technology
+        </a> |
+        Template adapted from
+        <a href="https://templated.co">TEMPLATED</a>
+    </p>
+</div>
+
+</body>
+</html>
