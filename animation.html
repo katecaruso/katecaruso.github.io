@@ -7,6 +7,7 @@
     <title>PIVOT! The One Where They Should've Used Physics | Kate Caruso ePortfolio</title>
     <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700,300" rel="stylesheet">
     <link href="style.css" rel="stylesheet" media="screen">
+
     <style>
         .animation-page #wrapper,
         .animation-page .container {
@@ -21,17 +22,18 @@
         .animation-page #page {
             width: min(100%, 66rem);
             padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
+            font-size: 15px;
         }
 
         .animation-project {
             margin-top: 2rem;
             padding-top: 1.5rem;
-            border-top: 1px solid;
-            border-top-color: color-mix(in srgb, currentColor 22%, transparent);
+            border-top: 1px solid #D9A76C;
         }
 
         .animation-project h2 {
-            margin-bottom: 0.75rem;
+            font-size: 28px;
+            margin-bottom: 12px;
         }
 
         .animation-project iframe {
@@ -41,27 +43,39 @@
             height: auto;
             aspect-ratio: 16 / 9;
             border: 0;
+            margin-top: 1.25rem;
         }
 
         .animation-project p {
             margin: 0.75rem 0 0;
         }
 
-        @media (max-width: 75rem) {
-            .animation-page #menu {
-                height: auto;
-            }
+        .animation-page #menu-wrapper,
+        .animation-page #menu {
+            height: auto;
+        }
 
-            .animation-page #menu ul {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+        .animation-page #menu ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .animation-page #menu a {
+            padding: 0 20px;
+        }
+
+        .animation-page #footer {
+            height: auto;
+            padding: 30px 15px;
         }
     </style>
 </head>
+
 <body class="animation-page">
+
 <div id="wrapper">
+
     <div id="menu-wrapper">
         <nav id="menu" class="container" aria-label="Portfolio">
             <ul>
@@ -69,8 +83,11 @@
                 <li><a href="image.html">Image Editing</a></li>
                 <li><a href="web.html">Web Design</a></li>
                 <li><a href="video.html">Video Production</a></li>
-                <li class="current_page_item"><a href="animation.html" aria-current="page">Animation</a></li>
+                <li class="current_page_item">
+                    <a href="animation.html" aria-current="page">Animation</a>
+                </li>
                 <li><a href="screencast.html">Screencast</a></li>
+                <li><a href="mobile-app/">Mobile App</a></li>
                 <li><a href="contact.html">Contact Me</a></li>
             </ul>
         </nav>
@@ -81,26 +98,38 @@
     </div>
 
     <main id="page" class="container">
+
         <div class="entry">
-           <p><i>PIVOT! The One Where They Should’ve Used Physics</i> is a 14.8-second animation showing how the same perpendicular push produces twice the torque when applied twice as far from a fixed pivot.</p>
+            <p><i>PIVOT! The One Where They Should’ve Used Physics</i> is a 14.8-second animation showing how the same perpendicular push produces twice the torque when applied twice as far from a fixed pivot.</p>
         </div>
 
         <section class="animation-project" aria-labelledby="animation-heading">
+
             <h2 id="animation-heading">AI-Assisted Animation</h2>
+
             <p>I used ChatGPT and Codex to create the storyboard, script, SVG artwork, and timing code. Runway generated the narration, and FFmpeg combined the audio and video.</p>
-            <p>&nbsp;</p>
-                     <iframe src="https://youtu.be/uYMLR7jfGhE"
+
+            <iframe src="https://www.youtube.com/embed/uYMLR7jfGhE"
                     title="PIVOT! The One Where They Should've Used Physics"
                     width="720" height="405"
+                    loading="lazy"
                     referrerpolicy="strict-origin-when-cross-origin"
                     allowfullscreen></iframe>
+
             <p><a href="https://youtu.be/KSoaunfwmRQ">Watch on YouTube</a></p>
+
         </section>
+
     </main>
+
 </div>
 
 <div id="footer">
-    <p>© 2026 Kate Caruso | EME 6208 DIME | <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> | Template adapted from <a href="https://templated.co">TEMPLATED</a></p>
+    <p>© 2026 Kate Caruso | EME 6208 DIME |
+        <a href="https://education.ufl.edu/educational-technology/">UF Educational Technology</a> |
+        Template adapted from <a href="https://templated.co">TEMPLATED</a>
+    </p>
 </div>
+
 </body>
 </html>
