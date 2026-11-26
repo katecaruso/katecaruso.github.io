@@ -10,145 +10,191 @@
     <link href="../style.css" rel="stylesheet" media="screen">
 
     <style>
-        .mobile-page #wrapper,
-        .mobile-page .container {
+        .mobile-development #wrapper,
+        .mobile-development .container {
             box-sizing: border-box;
             max-width: 100%;
         }
 
-        .mobile-page #logo {
-            height: auto;
-            padding: 2rem 1rem 1rem;
+        .mobile-development #logo {
+            padding-block: 2rem 1rem;
         }
 
-        .mobile-page #page {
+        .mobile-development #page {
             width: min(100%, 66rem);
             padding: 0 clamp(1rem, 4vw, 2rem) 2.5rem;
             font-size: 15px;
         }
 
-        .app-showcase {
-            background: #FFFFFF;
-            border-top: 3px solid #D9A76C;
-            padding: clamp(1rem, 4vw, 2rem);
-            margin: 2rem 0;
+        .mobile-development .app-showcase,
+        .mobile-development .app-section {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #D9A76C;
+        }
+
+        .mobile-development .app-showcase {
             text-align: center;
         }
 
-        .app-title {
+        .mobile-development .app-showcase h2,
+        .mobile-development .app-section h2 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .mobile-development .app-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 16px 0;
+        }
+
+        .mobile-development .app-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mobile-development .dot-red {
+            background: #D94A4A;
+        }
+
+        .mobile-development .dot-yellow {
+            background: #E6BC43;
+        }
+
+        .mobile-development .dot-blue {
+            background: #4B83C3;
+        }
+
+        .mobile-development .app-subtitle {
+            font-style: italic;
             color: #4B306A;
-            font-size: clamp(24px, 4vw, 36px);
             font-weight: 700;
         }
 
-        .app-dots {
-            font-size: 20px;
-            letter-spacing: 4px;
-            margin: 12px 0;
+        .mobile-development .app-description {
+            max-width: 65ch;
+            margin: 0 auto 24px;
         }
 
-        .app-subtitle {
-            font-style: italic;
-            color: #465563;
-        }
-
-        .app-screenshots {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+        .mobile-development .app-screenshots {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 24px;
+            max-width: 520px;
+            box-sizing: border-box;
             background: #E6E3F7;
-            padding: 24px 12px;
-            border-radius: 16px;
-            margin: 24px 0;
+            padding: 24px;
+            border-radius: 8px;
+            margin: 24px auto;
+            align-items: start;
         }
 
-        .app-screenshots figure {
-            flex: 1 1 220px;
-            max-width: 280px;
+        .mobile-development .app-screenshots figure {
             min-width: 0;
             margin: 0;
         }
 
-        .app-screenshots img {
+        .mobile-development .app-screenshots img {
             display: block;
-            width: 100%;
+            width: auto;
+            max-width: min(100%, 200px);
             height: auto;
-            border-radius: 18px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            max-height: 380px;
+            object-fit: contain;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
         }
 
-        .app-screenshots figcaption {
+        .mobile-development .app-screenshots figcaption {
             margin-top: 12px;
             font-size: 14px;
             font-weight: 700;
             color: #4B306A;
         }
 
-        .app-download {
+        .mobile-development .app-download {
             display: inline-block;
             background: #247F80;
             color: #FFFFFF;
-            padding: 15px 28px;
+            padding: 12px 24px;
             margin: 12px 0;
             font-weight: 700;
             border-radius: 5px;
+            text-decoration: none;
         }
 
-        .app-download:hover {
+        .mobile-development .app-download:hover {
             background: #17324D;
+            color: #FFFFFF;
         }
 
-        .app-note {
+        .mobile-development .app-note {
             font-size: 13px;
-            color: #465563;
         }
 
-        .app-section {
+        .mobile-development .download-note {
+            max-width: 65ch;
+            margin: 12px auto 20px;
+        }
+
+        .mobile-development .project-disclaimer {
             margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #D9A76C;
+            font-style: italic;
         }
 
-        .app-section h2 {
-            font-size: 28px;
-            margin-bottom: 12px;
-        }
-
-        .web-link {
-            color: #247F80;
-            font-weight: 700;
-            text-decoration: underline;
-        }
-
-        .mobile-page #menu-wrapper,
-        .mobile-page #menu {
+        .mobile-development #menu-wrapper,
+        .mobile-development #menu {
             height: auto;
         }
 
-        .mobile-page #menu ul {
+        .mobile-development #menu ul {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .mobile-page #menu a {
+        .mobile-development #menu a {
             padding: 0 20px;
         }
 
-        .mobile-page #footer {
+        .mobile-development #footer {
             height: auto;
             padding: 30px 15px;
+        }
+
+        .mobile-development a:focus-visible {
+            outline: 2px solid #247F80;
+            outline-offset: 4px;
+        }
+
+        .mobile-development #menu a:focus-visible,
+        .mobile-development #footer a:focus-visible {
+            outline-color: #D9A76C;
+        }
+
+        @media (max-width: 600px) {
+            .mobile-development .app-screenshots {
+                grid-template-columns: 1fr;
+                max-width: 280px;
+                gap: 24px;
+                padding: 20px;
+            }
         }
     </style>
 </head>
 
-<body class="mobile-page">
+<body class="mobile-development">
 
 <div id="wrapper">
 
     <div id="menu-wrapper">
+
         <nav id="menu" class="container" aria-label="Portfolio">
+
             <ul>
                 <li><a href="../index.html">About</a></li>
                 <li><a href="../image.html">Image Editing</a></li>
@@ -156,88 +202,122 @@
                 <li><a href="../video.html">Video Production</a></li>
                 <li><a href="../animation.html">Animation</a></li>
                 <li><a href="../screencast.html">Screencast</a></li>
+
                 <li class="current_page_item">
-                    <a href="index.html" aria-current="page">Mobile App</a>
+                    <a href="index.html" aria-current="page">
+                        Mobile App
+                    </a>
                 </li>
+
                 <li><a href="../contact.html">Contact Me</a></li>
             </ul>
+
         </nav>
+
     </div>
 
     <div id="logo" class="container">
+
         <h1>Mobile App Development</h1>
+
     </div>
 
     <main id="page" class="container">
 
         <div class="entry">
+
             <p>
-                For this project, I transformed the Friends trivia
-                quiz I originally created for Module 2 into an
-                interactive mobile application using MIT App Inventor.
-                This project allowed me to explore mobile application
-                development, visual programming, interface design,
-                and usability testing.
+                For this project, I transformed the
+                <em>Friends</em> trivia quiz I originally created
+                for Module 2 into an interactive mobile application
+                using MIT App Inventor. This project allowed me
+                to explore mobile application development, visual
+                programming, interface design, and usability testing.
             </p>
+
         </div>
 
-        <section class="app-showcase" aria-labelledby="app-heading">
+        <section class="app-showcase"
+                 aria-labelledby="app-heading">
 
-            <h2 id="app-heading" class="app-title">
+            <h2 id="app-heading">
                 The One with the Friends Trivia Quiz
             </h2>
 
             <div class="app-dots" aria-hidden="true">
-                🔴 🟡 🔵 🔴 🟡 🔵
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-blue"></span>
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-blue"></span>
             </div>
 
             <p class="app-subtitle">
                 How well do you know the gang?
             </p>
 
-            <p>
-                Test your Friends knowledge with ten interactive
-                trivia questions, live scoring, humorous feedback,
-                final results, and replay functionality.
+            <p class="app-description">
+                Test your <em>Friends</em> knowledge with ten
+                interactive trivia questions, live scoring,
+                humorous feedback, final results, and replay
+                functionality.
             </p>
 
             <div class="app-screenshots">
 
                 <figure>
-                    <img src="quiz-screen.png"
-                         alt="Friends trivia mobile app displaying the first question and four multiple-choice answers">
-                    <figcaption>Interactive Quiz Interface</figcaption>
+
+                    <img
+                        src="quiz-screen.png"
+                        alt="Friends trivia mobile app displaying the first question and four multiple-choice answers">
+
+                    <figcaption>
+                        Interactive Quiz Interface
+                    </figcaption>
+
                 </figure>
 
                 <figure>
-                    <img src="results-screen.png"
-                         alt="Completed Friends trivia quiz displaying a final score of ten out of ten and a restart button">
-                    <figcaption>Final Results Screen</figcaption>
+
+                    <img
+                        src="results-screen.png"
+                        alt="Completed Friends trivia quiz displaying a final score of ten out of ten and a restart button">
+
+                    <figcaption>
+                        Final Results Screen
+                    </figcaption>
+
                 </figure>
 
             </div>
 
             <a class="app-download"
-               href="FriendsTriviaQuiz.apk" download>
+               href="FriendsTriviaQuiz.apk"
+               download>
                 Download Android App (.apk)
             </a>
 
-            <p class="app-note">
+            <p class="app-note download-note">
                 Compatible with Android devices only.
                 Installation may require permission to install
                 applications from outside Google Play.
             </p>
 
             <p>
-                <a class="web-link" href="../friends-quiz/">
+                <a href="../friends-quiz/">
                     Play the Original Web-Based Quiz
                 </a>
             </p>
 
         </section>
 
-        <section class="app-section">
-            <h2>Development Process</h2>
+        <section class="app-section"
+                 aria-labelledby="development-heading">
+
+            <h2 id="development-heading">
+                Development Process
+            </h2>
 
             <p>
                 I used MIT App Inventor's Designer to create
@@ -248,10 +328,15 @@
                 button events to manage questions, answers,
                 scoring, and navigation.
             </p>
+
         </section>
 
-        <section class="app-section">
-            <h2>Testing and Usability</h2>
+        <section class="app-section"
+                 aria-labelledby="testing-heading">
+
+            <h2 id="testing-heading">
+                Testing and Usability
+            </h2>
 
             <p>
                 I tested the application on my iPhone using
@@ -267,10 +352,15 @@
                 final results, and restart functionality.
                 I then generated an Android APK for distribution.
             </p>
+
         </section>
 
-        <section class="app-section">
-            <h2>Reflection and Future Development</h2>
+        <section class="app-section"
+                 aria-labelledby="reflection-heading">
+
+            <h2 id="reflection-heading">
+                Reflection and Future Development
+            </h2>
 
             <p>
                 This project helped me understand the relationship
@@ -280,26 +370,30 @@
                 additional trivia questions, sound effects,
                 and more advanced mobile application development.
             </p>
+
         </section>
 
-        <p class="app-note">
+        <p class="app-note project-disclaimer">
             This is an unofficial, fan-made educational project
-            and is not affiliated with the Friends television
-            series or its rights holders.
+            and is not affiliated with the <em>Friends</em>
+            television series or its rights holders.
         </p>
 
     </main>
+
 </div>
 
 <div id="footer">
+
     <p>
-        © 2026 Kate Caruso | EME 6208 DIME |
+        &copy; 2026 Kate Caruso | EME 6208 DIME |
         <a href="https://education.ufl.edu/educational-technology/">
             UF Educational Technology
         </a> |
         Template adapted from
         <a href="https://templated.co">TEMPLATED</a>
     </p>
+
 </div>
 
 </body>
